@@ -1,0 +1,88 @@
+{
+  "Settings": [
+    {
+      "Show": true,
+      "Name": "name",
+      "ShowName": "角色姓名",
+      "ShowAsString": false
+    },
+    {
+      "Show": true,
+      "Name": "version",
+      "ShowName": "版本",
+      "ShowAsString": false
+    },
+    {
+      "Show": false,
+      "Name": "UI_enable",
+      "ShowName": "UI_enable",
+      "ShowAsString": false
+    },
+    {
+      "Show": true,
+      "Name": "Gemini_key",
+      "ShowName": "谷歌Gemini密钥",
+      "ShowAsString": false
+    },
+    {
+      "Show": true,
+      "Name": "history_length",
+      "ShowName": "历史长度",
+      "ShowAsString": true
+    },
+    {
+      "Show": true,
+      "Name": "wake_word",
+      "ShowName": "wake_word",
+      "ShowAsString": false
+    },
+    {
+      "Show": true,
+      "Name": "voice_input",
+      "ShowName": "声音输入",
+      "ShowAsString": false
+    },
+    {
+      "Show": true,
+      "Name": "voice_synthesis",
+      "ShowName": "语音合成",
+      "ShowAsString": false
+    },
+    {
+      "Show": true,
+      "Name": "save_voice_path",
+      "ShowName": "保存声音文件夹",
+      "ShowAsString": false
+    },
+    {
+      "Show": true,
+      "Name": "IFLYTEK_appid",
+      "ShowName": "科大讯飞appid",
+      "ShowAsString": false
+    },
+    {
+      "Show": true,
+      "Name": "IFLYTEK_apikey",
+      "ShowName": "科大讯飞api密钥",
+      "ShowAsString": false
+    },
+    {
+      "Show": true,
+      "Name": "gpt_sovits_url",
+      "ShowName": "GPT计划网址",
+      "ShowAsString": false
+    },
+    {
+      "Show": true,
+      "Name": "wake_access_key",
+      "ShowName": "唤醒关键词",
+      "ShowAsString": false
+    },
+    {
+      "Show": true,
+      "Name": "Project_Path",
+      "ShowName": "后端项目文件夹",
+      "ShowAsString": false
+    }
+  ]
+}

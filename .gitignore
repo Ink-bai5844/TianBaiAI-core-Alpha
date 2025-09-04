@@ -1,0 +1,5 @@
+**/__pycache__/
+config.json
+memory/
+!memory/IOmemory.py
+go-apiv2.bat.lnk

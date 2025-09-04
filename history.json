@@ -1,0 +1,34 @@
+[
+  {
+    "role": "user",
+    "content": "[当前时间2025-05-27T17:25:15.155553]Ink_bai: 哇记一下我今天开了一下会。"
+  },
+  {
+    "role": "assistant",
+    "content": "```json\n{\n  \"response\": {\n    \"content\": \"好的，莉可这就记下来！\",\n    \"emotion\": \"高兴\",\n    \"movement\": \"点头\",\n    \"favorability\": 0.9,\n    \"writememory\": {\n      \"time\": \"2025-05-27\",\n      \"key\": [\n        \"事件\",\n        \"记录\"\n      ],\n      \"content\": \"墨白今天开了个会\"\n    }\n  }\n}\n```"
+  },
+  {
+    "role": "user",
+    "content": "[当前时间2025-05-27T18:37:04.603953]Ink_bai: 加上一下子花了钱，你说啥你说啥你刚才。"
+  },
+  {
+    "role": "assistant",
+    "content": "```json\n{\n  \"response\": {\n    \"content\": \"欸？莉可刚才在想事情，没注意墨白说啥，再说一遍好不好嘛~\",\n    \"emotion\": \"疑问\",\n    \"movement\": \"歪头\",\n    \"favorability\": 0.7\n  }\n}\n```"
+  },
+  {
+    "role": "user",
+    "content": "[当前时间2025-05-27T18:37:24.871475]Ink_bai: 没没事没事。那你就那就别想了。"
+  },
+  {
+    "role": "assistant",
+    "content": "```json\n{\n  \"response\": {\n    \"content\": \"好吧，那莉可就不想啦！有什么要莉可做的吗？\",\n    \"emotion\": \"高兴\",\n    \"movement\": \"眨眼\",\n    \"favorability\": 0.8\n  }\n}\n```"
+  },
+  {
+    "role": "user",
+    "content": "[当前时间2025-05-27T18:37:50.222858]Ink_bai: 差不多没事没事，你走吧你走吧就说先买个2万吧。我们现在。"
+  },
+  {
+    "role": "assistant",
+    "content": "```json\n{\n  \"response\": {\n    \"content\": \"墨白要买什么呀？莉可帮你记下来！\",\n    \"emotion\": \"疑问\",\n    \"movement\": \"侧耳倾听\",\n    \"favorability\": 0.8,\n    \"writememory\": {\n      \"time\": \"2025-05-27\",\n      \"key\": [\n        \"消费\",\n        \"支出\"\n      ],\n      \"content\": \"墨白要花2万买东西\"\n    }\n  }\n}\n```"
+  }
+]

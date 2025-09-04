@@ -1,0 +1,145 @@
+[
+    {
+      "name": "打开Chrome",
+      "open": [],
+      "close": [],
+      "extra":"extra\\browser\\browser.py"
+    },
+    {
+      "name": "打开网易云音乐",
+      "open": [],
+      "close": [],
+      "extra":"extra\\music163\\musc163.py"
+    },
+    {
+      "name": "打开动态壁纸程序",
+      "open": [
+        "E:\\Steam\\steamapps\\common\\wallpaper_engine\\launcher.exe"
+      ],
+      "close": [],
+      "extra":""
+    },
+    {
+      "name": "打开壁纸文件夹",
+      "open": [
+        "D:\\Users\\Admin\\Pictures\\二次元"
+      ],
+      "close": [],
+      "extra":""
+    },
+    {
+      "name": "打开文件管理器",
+      "open": [
+        "C:\\Windows\\explorer.exe"
+      ],
+      "close": [],
+      "extra":""
+    },
+    {
+      "name": "打开相册",
+      "open": [
+        "D:\\Users\\Admin\\Pictures"
+      ],
+      "close": [],
+      "extra":""
+    },
+    {
+      "name": "打开计算器",
+      "open": [
+        "C:\\Windows\\System32\\calc.exe"
+      ],
+      "close": [],
+      "extra":""
+    },
+    {
+      "name": "打开MC",
+      "open": [
+        "D:\\Users\\Admin\\Desktop\\资源【杂项】\\Plain Craft Launcher 2.exe"
+      ],
+      "close": [],
+      "extra":""
+    },
+    {
+      "name": "打开额外技能目录",
+      "open": [
+        "D:\\Python\\partner-alpha\\extra"
+      ],
+      "close": [],
+      "extra":""
+    },
+    {
+      "name": "打开学习通",
+      "open": [
+        "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      ],
+      "close": [],
+      "extra":""
+    },
+    {
+      "name": "打开VScode",
+      "open": [
+        "D:\\Microsoft VS Code\\Code.exe"
+      ],
+      "close": [],
+      "extra":""
+    },
+    {
+      "name": "打开Edge",
+      "open": [
+        "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+      ],
+      "close": [],
+      "extra":"extra\\browser\\browser.py"
+    },
+    {
+      "name": "打开闹钟定时",
+      "open": [],
+      "close": [],
+      "extra":"extra\\clock\\clock.py"
+    },
+    {
+      "name": "打开天气",
+      "open": [],
+      "close": [],
+      "extra":"extra\\weather\\weather.py"
+    },
+    {
+      "name": "打开设置",
+      "open": [],
+      "close": [],
+      "extra":"extra\\setting\\setting.py"
+    },
+    {
+      "name": "打开记事本",
+      "open": [
+        "C:\\Windows\\System32\\notepad.exe"
+      ],
+      "close": [],
+      "extra":""
+    },
+    {
+      "name": "打开QQ",
+      "open": [
+        "E:\\QQ\\QQ.exe"
+      ],
+      "close": [],
+      "extra":""
+    },
+    {
+      "name": "打开微信",
+      "open": [
+        "C:\\Program Files (x86)\\Tencent\\WeChat\\WeChat.exe"
+      ],
+      "close": [],
+      "extra":""
+    },
+    {
+      "name": "学习技能",
+      "open": [
+        "actions/action.json",
+        "actions/classification_rules.json"
+      ],
+      "close": [],
+      "extra":""
+    }
+]
