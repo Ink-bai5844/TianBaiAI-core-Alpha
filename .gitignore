@@ -1,5 +1,5 @@
 **/__pycache__/
 config.json
-memory/
-!memory/IOmemory.py
+memory/alias_mapping.csv
+memory/memory.csv
 go-apiv2.bat.lnk
