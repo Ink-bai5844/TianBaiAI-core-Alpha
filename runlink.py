@@ -30,7 +30,7 @@ with open('config.json', 'r', encoding='utf-8') as f:
     WAKE_OPEN = config.get('wake_word', True)
     VOICE_SYNTHESIS = config.get('voice_synthesis', True)
     VOICE_INPUT = config.get('voice_input', True)
-    UI_ENABLE = config.get('ui_enable', True)
+    UI_ENABLE = config.get('UI_enable', True)
     AUDIO_FILE_PATH = config.get('save_voice_path', 'AudioTemp/output_audio.wav')
 
 #打开tmp.txt

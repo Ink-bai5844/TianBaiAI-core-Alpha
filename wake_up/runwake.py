@@ -10,11 +10,11 @@ with open(os.path.join(MODULE_DIR, 'config.json'), 'r', encoding='utf-8') as f:
     config = json.load(f)
     ACCESS_KEY = config.get('wake_access_key', '')
 
-keywords = ["Link_bai"]
+keywords = ["IRIS"]
 
 porcupine = pvporcupine.create(
   access_key=ACCESS_KEY,
-  keyword_paths=[os.path.join(MODULE_DIR, 'wake_up/model/Link-bai_en_windows_v3_0_0.ppn')],
+  keyword_paths=[os.path.join(MODULE_DIR, 'wake_up/model/Iras_en_windows_v4_0_0.ppn')],
   model_path=os.path.join(MODULE_DIR, 'wake_up/model/porcupine_params.pv')
 )
 

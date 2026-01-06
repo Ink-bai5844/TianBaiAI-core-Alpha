@@ -1,6 +1,6 @@
 import csv
 import os
-from ..creat import creatmemory
+from creat import creatmemory
 from datetime import datetime
 
 creatmemory()

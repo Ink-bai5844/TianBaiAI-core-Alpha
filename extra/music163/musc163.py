@@ -75,7 +75,7 @@ with open('tmp.txt', 'r', encoding='utf-8') as f:
     action = f.read()
 
 #确保网易云音乐窗口处于活动状态
-os.startfile("C:\\Program Files (x86)\\Netease\\CloudMusic\\cloudmusic.exe")
+os.startfile("E:\\CloudMusic\\cloudmusic.exe")
 
 # bring_to_front("NetEase Cloud Music")
 

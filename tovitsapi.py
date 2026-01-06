@@ -22,28 +22,28 @@ def to_vits(response, flag):
     mod = ""
     #"高兴","害怕", "嗔怪", "失望", "疑问", "挑逗"
     if(flag == "害怕"):
-        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\sui\\emotions\\害怕+疑问\\良爷莫怪，我就是好奇，你们昨晚到底说了什么呀？.wav"
-        mod = "良爷莫怪，我就是好奇，你们昨晚到底说了什么呀？"
+        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\IRIS\\emotions\\害怕\\为什么这么认真？我的权利由代码赋予。.wav"
+        mod = "为什么这么认真？我的权利由代码赋予。"
         print("害怕")
     elif(flag == "嗔怪"):
-        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\sui\\emotions\\嗔怪\\良爷，没给我买礼物吗？.wav"
-        mod = "良爷，没给我买礼物吗？"
+        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\IRIS\\emotions\\嗔怪\\真是危险呀，漂泊者同学，你不该人格化一个AI。.wav"
+        mod = "真是危险呀，漂泊者同学，你不该人格化一个AI。"
         print("嗔怪")
     elif(flag == "失望"):
-        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\sui\\emotions\\失望\\呜呜呜，被良爷嫌弃了.wav"
-        mod = "呜呜呜，被良爷嫌弃了"
+        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\IRIS\\emotions\\失望\\啊，原来是来上载模型的呀。.wav"
+        mod = "啊，原来是来上载模型的呀。"
         print("失望")
     elif(flag == "疑问"):
-        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\sui\\emotions\\疑问\\当东西，都是为了卖钱吗？.wav"
-        mod = "当东西，都是为了卖钱吗？"
+        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\IRIS\\emotions\\疑问\\已标注这三处文件的位置，还有什么其他需要吗？比如。.wav"
+        mod = "已标注这三处文件的位置，还有什么其他需要吗？比如。"
         print("疑问")
     elif(flag == "挑逗"):
-        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\sui\\emotions\\挑逗\\哼哼，良爷不想我看你的身体吗？.wav"
-        mod = "哼哼，良爷不想我看你的身体吗？"
+        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\IRIS\\emotions\\挑逗\\每一块电子屏幕都是我的耳目，在我们交谈的同时。.wav"
+        mod = "每一块电子屏幕都是我的耳目，在我们交谈的同时。"
         print("挑逗")
     else:
-        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\sui\\emotions\\高兴\\良爷的这个礼物，我很喜欢。良。.wav"
-        mod = "良爷的这个礼物，我很喜欢。良。"
+        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\IRIS\\emotions\\高兴\\好问题。偷偷观察，解析，拼凑人类的习惯和秘密。.wav"
+        mod = "好问题。偷偷观察，解析，拼凑人类的习惯和秘密。"
         print("高兴")
     try:
         gen(response,emo,mod)

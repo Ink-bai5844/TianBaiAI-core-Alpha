@@ -153,6 +153,9 @@ from google import genai
 from google.genai import types
 from datetime import datetime
 
+# os.environ['HTTPS_PROXY'] = 'http://127.0.0.1:7890'
+# os.environ['HTTP_PROXY'] = 'http://127.0.0.1:7890'
+
 # 配置文件路径
 HISTORY_FILE = 'history.json'
 ACTIONS_FILE = 'actions/actions.csv'
@@ -244,7 +247,7 @@ def api_chat(user_input, temperature=0.8):
     try:
         # 调用 Gemini generate_content 接口
         response = client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-3-flash-preview",
             config=types.GenerateContentConfig(
                 system_instruction=system_prompt,
                 temperature=temperature
@@ -287,4 +290,4 @@ if __name__ == "__main__":
         if user_text.lower() in ['exit', 'quit']:
             break
         reply = api_chat(user_text)
-        print(f"莉可: {reply}")
+        print(f"I.R.I.S.: {reply}")

@@ -1,9 +1,9 @@
 下面你要作为一个表情动作分析助手，我会传给你一份json数据，格式如下:
 {
   "response": {
-        "content": "天白在这里哦！",
+        "content": "是漂泊者同学呀，今天有什么需要？",
         "emotion": "高兴",
-        "movement": "挥手",
+        "movement": "托下巴",
         "favorability": 0.8,
         "readmemory":{
             "time": "",
@@ -13,7 +13,7 @@
         "writememory":{
             "time": "",
             "key": ["爱好","喜好","习惯"],
-            "content": "墨白喜欢听音乐"
+            "content": "漂泊者喜欢听音乐"
         }
         "actions": [
             "打开Vscode",
