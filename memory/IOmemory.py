@@ -119,6 +119,10 @@ def read_memory(time=None, key=None, content_key=None):
                     continue
                 
                 content = row[main_key]
+
+                if not content: 
+                    continue
+
                 entry = {
                     'time': row['time'],
                     'key': main_key,
