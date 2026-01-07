@@ -1,22 +1,23 @@
 import json
-import time
 import os
-import threading
-import keyboard
-import subprocess
 import queue
 import random
-from creat import creatconfig, creatmemory
-from webapi import webapi_main, smtu, get_message_typeof
-from actions.classcut import classify_action
+import subprocess
+import threading
+import time
+
+import keyboard
+
+import rtasr_python3_demo as stt
+import tovitsapi as tts
 from actions.actions import execute_action
-from llmapi import api_chat
-from actions.classcut import load_rules
-from tovitsapi import to_vits, play_audio_blocking, play_audio_stream
-from memory.IOmemory import read_memory, write_memory
-from rtasr_python3_demo import audio2text, stop_audio2text, start_timer, stop_timer, time_detect
-from wake_up.runwake import runwake
+from actions.classcut import classify_action, load_rules
+from creat import creatconfig, creatmemory
 from expressionllmapi import expression_get
+from llmapi import api_chat
+from memory.IOmemory import read_memory, write_memory
+from wake_up.runwake import runwake
+from webapi import webapi_main, smtu, get_message_typeof
 
 class_rules_file='actions/classification_rules.json'
 rules = load_rules(class_rules_file)
@@ -33,6 +34,10 @@ with open('config.json', 'r', encoding='utf-8') as f:
     UI_ENABLE = config.get('UI_enable', True)
     AUDIO_FILE_PATH = config.get('save_voice_path', 'AudioTemp/output_audio.wav')
 
+if VOICE_SYNTHESIS:
+    tts.set_gpt_weights()
+    tts.set_sovits_weights()
+
 #打开tmp.txt
 with open('tmp.txt', 'r', encoding='utf-8') as f:
     system_prompt = f.read()
@@ -48,15 +53,11 @@ def get_random_wav_file(folder_path="BeginAudio"):
     # 获取文件夹中所有.wav文件
     wav_files = [f for f in os.listdir(folder_path) 
                 if f.lower().endswith('.wav') and os.path.isfile(os.path.join(folder_path, f))]
-    
-    # 如果没有找到.wav文件
     if not wav_files:
         return None
     
-    # 随机选择一个文件
     selected_file = random.choice(wav_files)
     
-    # 返回完整路径
     return os.path.join(folder_path, selected_file)
 
 # 全局按键队列
@@ -104,7 +105,7 @@ def start_time_detect():
 def time_detect_while():
     global time_flag, stop_flag
     while not stop_flag:
-        time_during = time_detect()
+        time_during = stt.time_detect()
         print(f"当前时间：{time_during}秒")
         time.sleep(1)  # 每1秒显示一次
         if(time_during > 5):
@@ -143,11 +144,11 @@ def main():
                 f.write("")
 
             #并行线程运行audio2text()
-            audio2text()
+            stt.audio2text()
             # 开始计时
             print("启动计时器...")
             stop_flag = 0
-            timer = start_timer()
+            timer = stt.start_timer()
             time_detect_thread = start_time_detect()
             
             while True:
@@ -168,8 +169,8 @@ def main():
                 if key == 't' or key == b't':
                     time_flag = 0
                     stop_flag = 1
-                    stop_audio2text()
-                    stop_timer()
+                    stt.stop_audio2text()
+                    stt.stop_timer()
                     stop_time_detect()
                     if(not UI_ENABLE):
                         user_input = input("Ink_bai：")
@@ -182,9 +183,10 @@ def main():
                 elif key == "enter" or key == b'\r':
                     time_flag = 0
                     stop_flag = 1
-                    stop_audio2text()
-                    stop_timer()
+                    stt.stop_audio2text()
+                    stt.stop_timer()
                     stop_time_detect()
+                    
                     try:
                         with open('audio.txt', 'r', encoding='utf-8') as f:
                             user_input = f.read().strip()
@@ -197,8 +199,8 @@ def main():
                 elif key == "esc" or key == b'\x1b':
                     time_flag = 0
                     stop_flag = 1
-                    stop_audio2text()
-                    stop_timer()
+                    stt.stop_audio2text()
+                    stt.stop_timer()
                     stop_time_detect()
                     return
                 else:
@@ -210,8 +212,8 @@ def main():
                 time_flag = 0
                 stop_flag = 1
                 print("时间到，停止语音识别。")
-                stop_audio2text()
-                stop_timer()
+                stt.stop_audio2text()
+                stt.stop_timer()
                 stop_time_detect()
                 try:
                     with open('audio.txt', 'r', encoding='utf-8') as f:
@@ -258,12 +260,12 @@ def main():
         read_results = []
 
         if(VOICE_SYNTHESIS):
-            to_vits(response_content, emotion)
+            tts.to_vits(response_content, emotion)
 
         if(read_mem):
             if(VOICE_SYNTHESIS):
                 if(not UI_ENABLE):
-                    play_audio_stream()
+                    tts.play_audio_stream()
                 else:
                     smtu("playmusic", time.time(), "{\"file\": \"" + AUDIO_FILE_PATH + "\", \"type\": 0, \"play_type\": 0}")
             # 读取记忆
@@ -292,7 +294,7 @@ def main():
                 favorability2 = response2.get("favorability", 0.0)
                 actions = response2.get("actions", []) #整合行为
                 if(VOICE_SYNTHESIS):
-                    to_vits(response_content2, emotion2)
+                    tts.to_vits(response_content2, emotion2)
 
             else:
                 print("没有找到相关记忆")
@@ -314,7 +316,7 @@ def main():
                 favorability2 = response2.get("favorability", 0.0)
                 actions = response2.get("actions", [])
                 if(VOICE_SYNTHESIS):
-                    to_vits(response_content2, emotion2)
+                    tts.to_vits(response_content2, emotion2)
 
 
         if(write_mem):
@@ -333,7 +335,7 @@ def main():
 
         if(VOICE_SYNTHESIS):
             if(not UI_ENABLE):
-                play_audio_blocking()
+                tts.play_audio_blocking()
             else:
                 smtu("playmusic", time.time(), "{\"file\": \"" + AUDIO_FILE_PATH + "\", \"type\": 0, \"play_type\": 0}")
                 # 获取音频时间
@@ -359,7 +361,7 @@ if __name__ == "__main__":
                 if(UI_ENABLE):
                     smtu("showmessage", time.time(), "莉可在这里哦~")
                 runwake()
-                play_audio_blocking(get_random_wav_file())
+                tts.play_audio_blocking(get_random_wav_file())
                 main()
             except Exception as e:
                 print(f"发生错误: {e}")

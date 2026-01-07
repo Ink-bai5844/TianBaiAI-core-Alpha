@@ -9,13 +9,15 @@ MODULE_DIR = os.path.dirname(os.path.dirname(__file__))
 with open(os.path.join(MODULE_DIR, 'config.json'), 'r', encoding='utf-8') as f:
     config = json.load(f)
     ACCESS_KEY = config.get('wake_access_key', '')
+    KEYWORD_PATH = config.get('keyword_paths', 'D:/Python/TianBaiAI-Alpha/wake_up/model/Iras_en_windows_v4_0_0.ppn')
+    MODEL_PATH = config.get('model_path', 'D:/Python/TianBaiAI-Alpha/wake_up/model/porcupine_params.pv')
 
 keywords = ["IRIS"]
 
 porcupine = pvporcupine.create(
   access_key=ACCESS_KEY,
-  keyword_paths=[os.path.join(MODULE_DIR, 'wake_up/model/Iras_en_windows_v4_0_0.ppn')],
-  model_path=os.path.join(MODULE_DIR, 'wake_up/model/porcupine_params.pv')
+  keyword_paths=[KEYWORD_PATH],
+  model_path=MODEL_PATH
 )
 
 recoder = PvRecorder(device_index=-1, frame_length=porcupine.frame_length)

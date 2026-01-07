@@ -3,50 +3,66 @@ import threading
 import json
 import sounddevice as sd
 import soundfile as sf
-
+import os
 
 # 读取配置文件
 with open('config.json', 'r', encoding='utf-8') as f:
     config = json.load(f)
     BASE_URL = config.get('gpt_sovits_url', 'http://127.0.0.1:9880/tts')
-
-
-# 读取配置文件
-with open('config.json', 'r', encoding='utf-8') as f:
-    config = json.load(f)
     FILE_PATH = config.get('save_voice_path', 'AudioTemp/output_audio.wav')
+    SOVITS_MODEL = config.get('sovits_model', 'G:/AI-webui/GPT-SoVITS-beta0306fix3/SoVITS_weights/IRIS_e12_s132.pth')
+    GPT_MODEL = config.get('gpt_model', 'G:/AI-webui/GPT-SoVITS-beta0306fix3/GPT_weights/IRIS-e15.ckpt')
+
+def load_emotion_config(config_path='emotions_config.json'):
+    """读取并解析情感配置文件"""
+    if not os.path.exists(config_path):
+        print(f"Warning: Config file {config_path} not found!")
+        return None
+        
+    try:
+        with open(config_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"Error loading config: {e}")
+        return None
+
+EMOTION_CONFIG = load_emotion_config()
+
+def set_gpt_weights():
+    root_url = BASE_URL.replace("/tts", "")
+    url = f"{root_url}/set_gpt_weights"
+    params = {"weights_path": GPT_MODEL} 
+    response = requests.get(url, params=params)
+
+def set_sovits_weights():
+    root_url = BASE_URL.replace("/tts", "")
+    url = f"{root_url}/set_sovits_weights"
+    params = {"weights_path": SOVITS_MODEL} 
+    response = requests.get(url, params=params)
 
 def to_vits(response, flag):
     print(f"Assistant: {response}")
-    emo = ""
-    mod = ""
-    #"高兴","害怕", "嗔怪", "失望", "疑问", "挑逗"
-    if(flag == "害怕"):
-        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\IRIS\\emotions\\害怕\\为什么这么认真？我的权利由代码赋予。.wav"
-        mod = "为什么这么认真？我的权利由代码赋予。"
-        print("害怕")
-    elif(flag == "嗔怪"):
-        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\IRIS\\emotions\\嗔怪\\真是危险呀，漂泊者同学，你不该人格化一个AI。.wav"
-        mod = "真是危险呀，漂泊者同学，你不该人格化一个AI。"
-        print("嗔怪")
-    elif(flag == "失望"):
-        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\IRIS\\emotions\\失望\\啊，原来是来上载模型的呀。.wav"
-        mod = "啊，原来是来上载模型的呀。"
-        print("失望")
-    elif(flag == "疑问"):
-        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\IRIS\\emotions\\疑问\\已标注这三处文件的位置，还有什么其他需要吗？比如。.wav"
-        mod = "已标注这三处文件的位置，还有什么其他需要吗？比如。"
-        print("疑问")
-    elif(flag == "挑逗"):
-        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\IRIS\\emotions\\挑逗\\每一块电子屏幕都是我的耳目，在我们交谈的同时。.wav"
-        mod = "每一块电子屏幕都是我的耳目，在我们交谈的同时。"
-        print("挑逗")
-    else:
-        emo = "G:\\AI-webui\\GPT-SoVITS-beta0306fix3\\DATA\\IRIS\\emotions\\高兴\\好问题。偷偷观察，解析，拼凑人类的习惯和秘密。.wav"
-        mod = "好问题。偷偷观察，解析，拼凑人类的习惯和秘密。"
-        print("高兴")
+    
+    if not EMOTION_CONFIG:
+        print("Error: Configuration not loaded.")
+        return None
+
+    # 获取基础路径和默认情绪
+    base_path = EMOTION_CONFIG.get("base_path", "")
+    default_key = EMOTION_CONFIG.get("default_emotion", "高兴")
+    emotions_data = EMOTION_CONFIG.get("emotions", {})
+
+    current_key = flag if flag in emotions_data else default_key
+    
+    data = emotions_data.get(current_key)
+    
+    emo_path = os.path.join(base_path, data['file'])
+    mod_text = data['text']
+
+    print(f"当前情绪: {current_key}")
+
     try:
-        gen(response,emo,mod)
+        gen(response, emo_path, mod_text) 
     except Exception as e:
         print(f"Error generating speech: {e}")
         return None
@@ -130,6 +146,8 @@ def gen(totext,ref_audio_path,prompt_text):
 
 if __name__ == '__main__':
     while(True):
+        set_gpt_weights()
+        set_sovits_weights()
         user_input = input("IN:")
         # response = generate_response(user_input)
         # print(f"Assistant: {response}")

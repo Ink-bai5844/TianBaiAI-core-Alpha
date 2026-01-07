@@ -248,6 +248,8 @@ def api_chat(user_input, temperature=0.8):
         # 调用 Gemini generate_content 接口
         response = client.models.generate_content(
             model="gemini-3-flash-preview",
+            # model="gemini-2.0-flash",
+            # model="gemini-2.5-flash-lite",
             config=types.GenerateContentConfig(
                 system_instruction=system_prompt,
                 temperature=temperature
@@ -257,7 +259,7 @@ def api_chat(user_input, temperature=0.8):
         )
     except Exception as e:
         print(f"Error: {e}")
-        return "{\"response\": {\"content\": \"llmapi炸了喵...\"}}"
+        return "{\"response\": {\"content\": \"llmapi似了...\"}}"
 
     print(f"\n{system_prompt_begin}\n" + messege_body)
 
